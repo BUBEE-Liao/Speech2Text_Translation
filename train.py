@@ -132,7 +132,7 @@ def train(model, optimizer, train_loader, learning_rate):
                 ckpt_path = os.path.join('/home/bubee/seamless/s2t/3000_ckpt/', "iteration_{}.pth".format(iteration))
                 state_dict = s2t_model.state_dict()
                 torch.save({'model': state_dict,'iteration': iteration,'optimizer': optimizer.state_dict(),'learning_rate': learning_rate}, ckpt_path)
-    
+    	    
             ### release memory
             del text_encoder_output
             del speech_encoder_output
@@ -151,7 +151,7 @@ def train(model, optimizer, train_loader, learning_rate):
             del loss_speech
             del loss_kl
             del total_loss
-                
+            iteration += 1
                 
     # remember to add del
 def evaluate(s2t_model, audio_feature_padded, audio_feature_mask, target_ids_padded, tokenizer, iteration, writer, device):
